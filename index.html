@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Вывод app-ads.txt</title>
+  <style>
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #f0f0f0;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Содержимое файла app-ads.txt</h1>
+  <pre id="app-ads-content">Загрузка...</pre>
+
+  <script>
+    fetch('app-ads.txt')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Ошибка загрузки: ${response.statusText}`);
+        }
+        return response.text();
+      })
+      .then(text => {
+        document.getElementById('app-ads-content').textContent = text;
+      })
+      .catch(error => {
+        document.getElementById('app-ads-content').textContent = `Ошибка: ${error.message}`;
+      });
+  </script>
+</body>
+</html>
